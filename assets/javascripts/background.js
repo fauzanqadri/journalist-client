@@ -1,1 +1,1 @@
-chrome.browserAction.setPopup({"popup" : "popup.html"})
+chrome.browserAction.setPopup({"popup" : "popup.html"});
