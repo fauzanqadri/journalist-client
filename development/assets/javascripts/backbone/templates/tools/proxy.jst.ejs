@@ -1,0 +1,8 @@
+function FindProxyForURL(url, host){
+<% $.each(journals, function(index, obj){%>
+  if(host === '<%= obj.host %>'){
+    return 'PROXY <%= host %>';
+  }
+<%});%>  
+  return 'DIRECT';
+}
