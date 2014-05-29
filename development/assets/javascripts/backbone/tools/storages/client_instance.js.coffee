@@ -5,8 +5,9 @@ class Journalist.Tools.LocalStorage.Storages.ClientInstance extends Journalist.T
     @key = "client_instance"
 
   find: (id) =>
-   return  _.find JSON.parse(@get()), (obj) =>
-     obj.id is id
+    if typeof(@get()) isnt "undefined"
+      return  _.find JSON.parse(@get()), (obj) =>
+      obj.id is id
 
   remove: (id) =>
     res = @find(id)

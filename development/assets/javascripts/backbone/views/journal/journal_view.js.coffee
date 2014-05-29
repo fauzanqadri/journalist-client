@@ -47,8 +47,6 @@ class Journalist.Views.Journal.JournalView extends Backbone.View
 
   injectCookie: (cookie)=>
     chrome.cookies.set cookie.toJSON(), (obj)=>
-      console.log obj
-      console.log cookie.toJSON()
       @cookie_jar.push(cookie.toJSON())
 
   error: ()=>

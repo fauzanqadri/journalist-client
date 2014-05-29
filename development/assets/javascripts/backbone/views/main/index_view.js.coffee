@@ -13,8 +13,6 @@ class Journalist.Views.Main.IndexView extends Backbone.View
 
   setAccountSession: () =>
     @clientSession.setAccount(@options.account.toJSON())
-    @clientSession.setProxyAuthorization(@options.account.authorization.toJSON().proxy)
-    @clientSession.saveProxyAuth()
 
   authorization: () =>
     @clientSession.setSession(@options.sign_in.toJSON())
