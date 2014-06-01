@@ -6,8 +6,8 @@ class Journalist.Tools.LocalStorage.Storages.ClientInstance extends Journalist.T
 
   find: (id) =>
     if typeof(@get()) isnt "undefined"
-      return  _.find JSON.parse(@get()), (obj) =>
-      obj.id is id
+      return _.find JSON.parse(@get()), (obj) =>
+        return obj.id == id
 
   remove: (id) =>
     res = @find(id)
@@ -19,7 +19,7 @@ class Journalist.Tools.LocalStorage.Storages.ClientInstance extends Journalist.T
           name: obj.name
     if typeof(@get()) isnt "undefined"
       data = _.reject JSON.parse(@get()), (obj) =>
-        obj.id is id
+        return obj.id is id
       @set(data, true)
       @save()
 
@@ -28,8 +28,9 @@ class Journalist.Tools.LocalStorage.Storages.ClientInstance extends Journalist.T
     if typeof(@get()) isnt "undefined"
       datas = JSON.parse(@get())
       _.each datas, (obj) ->
-        _.each obj.cookies, (ob) ->
+        _.each obj.cookies, (cookie) ->
           chrome.cookies.remove
-            url: obj.url
-            name: ob.name
+            url: cookie.url
+            name: cookie.name
+        chrome.tabs.remove(obj.id)
     window.localStorage.removeItem(@key)

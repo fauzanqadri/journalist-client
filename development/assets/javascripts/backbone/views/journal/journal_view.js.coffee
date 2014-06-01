@@ -26,8 +26,8 @@ class Journalist.Views.Journal.JournalView extends Backbone.View
       error: @error
 
   success: () =>
-    @cookies.each(@injectCookie)
     @cookie_jar = []
+    @cookies.each(@injectCookie)
     chrome.tabs.create
       url: @model.attributes.url
     , @createCallBack
@@ -46,8 +46,8 @@ class Journalist.Views.Journal.JournalView extends Backbone.View
     @action.clientInstanceStorage.save()
 
   injectCookie: (cookie)=>
-    chrome.cookies.set cookie.toJSON(), (obj)=>
-      @cookie_jar.push(cookie.toJSON())
+    @cookie_jar.push(cookie.toJSON())
+    chrome.cookies.set(cookie.toJSON())
 
   error: ()=>
     console.log "Error"
